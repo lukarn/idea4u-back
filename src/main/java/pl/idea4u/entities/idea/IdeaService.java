@@ -18,6 +18,7 @@ public class IdeaService {
     ObjectMapper objectMapper;
 
     ////////////////////// GET ////////////////////////
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/idea")
     public ResponseEntity getAllIdeas() throws JsonProcessingException {
         List<Idea> ideas = ideaRepository.findAll();
@@ -25,6 +26,7 @@ public class IdeaService {
         return ResponseEntity.ok(objectMapper.writeValueAsString(ideas));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/idea/last-ten")
     public ResponseEntity getLastTenIdeas() throws JsonProcessingException {
         List<Idea> ideas = ideaRepository.findLastTenIdeas();
@@ -32,6 +34,7 @@ public class IdeaService {
         return ResponseEntity.ok(objectMapper.writeValueAsString(ideas));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/idea/top-ten")
     public ResponseEntity getTopTenIdeas() throws JsonProcessingException {
         List<Idea> ideas = ideaRepository.findTopTenIdeas();
@@ -39,6 +42,7 @@ public class IdeaService {
         return ResponseEntity.ok(objectMapper.writeValueAsString(ideas));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/idea/{id}")
     public ResponseEntity getIdea(@PathVariable Integer id) throws JsonProcessingException {
         Idea idea = ideaRepository.findById(id).orElseThrow(() -> new IdeaNotFoundException(id));
@@ -46,6 +50,7 @@ public class IdeaService {
         return ResponseEntity.ok(objectMapper.writeValueAsString(idea));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/idea/count")
     public ResponseEntity countIdeas() throws JsonProcessingException {
         int availableIdeas = ideaRepository.countIdeas();
@@ -54,6 +59,7 @@ public class IdeaService {
     }
 
     /////////////// POST //////////////////////
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/idea")
     public ResponseEntity addIdea(@RequestBody Idea newIdea) {
         Idea savedIdea = ideaRepository.save(newIdea);
